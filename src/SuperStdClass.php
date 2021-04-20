@@ -9,6 +9,14 @@ class SuperStdClass
 
     private $data = [];
 
+    public function __construct(array $keyValues)
+    {
+        foreach ($keyValues as $key => $value) {
+            $this->data[$key] = $value;
+        }
+    }
+
+
     public function __set($name, $value)
     {
         $this->data[$name] = $value;
@@ -20,18 +28,5 @@ class SuperStdClass
             return $this->data[$name];
         }
         return null;
-    }
-
-    /**
-     * @param $keyValues
-     * @return static
-     */
-    public static function sets($keyValues)
-    {
-        $obj = new static();
-        foreach ($keyValues as $key => $value) {
-            $obj->$key = $value;
-        }
-        return $obj;
     }
 }
