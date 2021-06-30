@@ -1,10 +1,10 @@
 <?php
 
 
-use fize\super\SuperStdClass;
+use fize\super\SuperStd;
 use PHPUnit\Framework\TestCase;
 
-class TestSuperStdClass extends TestCase
+class TestSuperStd extends TestCase
 {
 
     public function test__set()

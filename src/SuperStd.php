@@ -4,7 +4,7 @@ namespace fize\super;
 /**
  * 超级基类
  */
-class SuperStdClass
+class SuperStd
 {
 
     private $data = [];

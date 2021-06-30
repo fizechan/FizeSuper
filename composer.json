@@ -5,16 +5,20 @@
       "email": "chenfengzhan@qq.com"
     }
   ],
+  "description": "一些常用类型的超级扩展。",
+  "license": "MIT",
+  "name": "fize/super",
   "autoload": {
     "psr-4": {
       "fize\\super\\": "src"
     }
   },
-  "description": "一些常用类型的超级扩展。",
-  "license": "MIT",
-  "name": "fize/super",
   "require": {
-    "php": ">=5.6"
+    "php": ">=7.0.0"
+  },
+  "suggest": {
+    "php": ">=7.2.0",
+    "ext-mbstring": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "~9.1.0"
