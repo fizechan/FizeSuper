@@ -1,10 +1,12 @@
 <?php
 namespace fize\super;
 
+use stdClass;
+
 /**
  * 超级基类
  */
-class SuperStd
+class SuperStdclass extends stdClass
 {
 
     private $data = [];
@@ -23,10 +25,11 @@ class SuperStd
     }
 
     /**
-     * @param $keyValues
+     * 使用数组对stdClass进行赋值，每个键值对对应一个属性
+     * @param array $keyValues 键值对
      * @return static
      */
-    public static function sets($keyValues)
+    public static function sets(array $keyValues)
     {
         $obj = new static();
         foreach ($keyValues as $key => $value) {

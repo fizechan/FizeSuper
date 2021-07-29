@@ -4,6 +4,7 @@ namespace fize\super;
 
 /**
  * 超级树
+ * @todo 待移除，请勿使用！
  */
 class SuperTree
 {
