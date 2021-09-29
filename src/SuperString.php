@@ -4,6 +4,8 @@ namespace fize\super;
 
 /**
  * 超级字符串
+ *
+ * @todo 待整理，请暂勿使用！
  */
 class SuperString
 {
