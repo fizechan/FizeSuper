@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests;
 
 use fize\super\SuperString;
 use PHPUnit\Framework\TestCase;

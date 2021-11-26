@@ -1,6 +1,6 @@
 <?php
 
-namespace fize\super;
+namespace Fize\Super;
 
 use ArrayAccess;
 use ArrayIterator;

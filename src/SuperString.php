@@ -1,6 +1,6 @@
 <?php
 
-namespace fize\super;
+namespace Fize\Super;
 
 /**
  * 超级字符串

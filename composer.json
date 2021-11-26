@@ -10,7 +10,7 @@
   "name": "fize/super",
   "autoload": {
     "psr-4": {
-      "fize\\super\\": "src"
+      "Fize\\Super\\": "src"
     }
   },
   "require": {
@@ -22,11 +22,11 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "examples\\": "examples",
-      "tests\\": "tests"
+      "Examples\\": "examples",
+      "Tests\\": "tests"
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "~9.1.0"
+    "phpunit/phpunit": "^9.5.0"
   }
 }

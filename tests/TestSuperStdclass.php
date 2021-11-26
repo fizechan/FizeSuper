@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests;
 
 use fize\super\SuperStdclass;
 use PHPUnit\Framework\TestCase;

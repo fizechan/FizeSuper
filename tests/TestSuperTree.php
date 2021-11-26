@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests;
 
 use fize\super\SuperTree;
 use PHPUnit\Framework\TestCase;
