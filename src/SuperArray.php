@@ -2,13 +2,40 @@
 
 namespace Fize\Super;
 
-use ArrayObject;
-
 /**
  * 超级数组
  */
-class SuperArray extends ArrayObject
+class SuperArray
 {
+
+    /**
+     * @var array 数组
+     */
+    protected $array;
+
+    /**
+     * 初始化
+     * @param array $array 数组
+     */
+    public function __construct(array $array = [])
+    {
+        $this->array = $array;
+    }
+
+    /**
+     * 将数组中的所有键名修改为全大写或小写
+     * @param int  $case
+     * @param bool $change
+     * @return array
+     */
+    public function changeKeyCase(int $case = CASE_LOWER, bool $change = true)
+    {
+        $array = array_change_key_case($this->array, $case);
+        if ($change) {
+            $this->array = $array;
+        }
+        return $array;
+    }
 
     /**
      * 多维数组转一维数组，键名使用下划线合并
