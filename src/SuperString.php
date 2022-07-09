@@ -9,6 +9,21 @@ namespace Fize\Super;
  */
 class SuperString
 {
+
+    /**
+     * @var string 字符串
+     */
+    protected $str;
+
+    /**
+     * 初始化
+     * @param string $str 字符串
+     */
+    public function __construct(string $str = '')
+    {
+        $this->str = $str;
+    }
+
     /**
      * 检查指定的字节流在指定的编码里是否有效
      *
@@ -43,14 +58,13 @@ class SuperString
      *   可以是 MB_CASE_UPPER、 MB_CASE_LOWER 和 MB_CASE_TITLE 的其中一个
      * 参数 `$encoding` :
      *   如果省略，则使用内部字符编码。
-     * @param string $str      要转化的字符串
      * @param int    $mode     转换的模式
      * @param string $encoding 字符编码
      * @return string
      */
-    public static function convertCase($str, $mode, $encoding = null)
+    public function convertCase($mode, $encoding = null)
     {
-        return mb_convert_case($str, $mode, $encoding);
+        return mb_convert_case($this->str, $mode, $encoding);
     }
 
     /**
@@ -58,17 +72,16 @@ class SuperString
      *
      * 参数 `$from_encoding` :
      *   如果没有提供，则会使用内部（internal）编码。
-     * @param string $str           要转码的字符串
      * @param string $to_encoding   要转换成的编码类型。
      * @param string $from_encoding 原编码
      * @return string
      */
-    public static function convertEncoding($str, $to_encoding, $from_encoding = null)
+    public function convertEncoding($to_encoding, $from_encoding = null)
     {
         if ($from_encoding) {
-            return mb_convert_encoding($str, $to_encoding, $from_encoding);
+            return mb_convert_encoding($this->str, $to_encoding, $from_encoding);
         }
-        return mb_convert_encoding($str, $to_encoding);
+        return mb_convert_encoding($this->str, $to_encoding);
     }
 
     /**
@@ -76,17 +89,16 @@ class SuperString
      *
      * 参数 `$encoding` :
      *   如果没有提供，则会使用内部（internal）编码。
-     * @param string $str      要转码的字符串
      * @param string $option   转码选项
      * @param string $encoding 原编码
      * @return string
      */
-    public static function convertKana($str, $option = 'KV', $encoding = null)
+    public function convertKana($option = 'KV', $encoding = null)
     {
         if ($encoding) {
-            return mb_convert_kana($str, $option, $encoding);
+            return mb_convert_kana($this->str, $option, $encoding);
         }
-        return mb_convert_kana($str, $option);
+        return mb_convert_kana($this->str, $option);
     }
 
     /**
@@ -108,12 +120,11 @@ class SuperString
 
     /**
      * 解码 MIME 头字段中的字符串
-     * @param string $str 要解码的字符串
      * @return string
      */
-    public static function decodeMimeheader($str)
+    public function decodeMimeheader()
     {
-        return mb_decode_mimeheader($str);
+        return mb_decode_mimeheader($this->str);
     }
 
     /**
@@ -121,28 +132,26 @@ class SuperString
      *
      * 参数 `$encoding` :
      *   如果省略参数 `$encoding` ，则使用内部字符编码。
-     * @param string $str      要解码的字符串
      * @param array  $convmap  指定了要转换的代码区域。
      * @param string $encoding 字符编码。
      * @return string
      */
-    public static function decodeNumericentity($str, array $convmap, $encoding = null)
+    public function decodeNumericentity(array $convmap, $encoding = null)
     {
-        return mb_decode_numericentity($str, $convmap, $encoding);
+        return mb_decode_numericentity($this->str, $convmap, $encoding);
     }
 
     /**
      * 检测字符的编码
      *
      * 编码顺序可以由数组或者逗号分隔的列表字符串指定
-     * @param string       $str           待检查的字符串
      * @param array|string $encoding_list 字符编码列表
      * @param bool         $strict        是否严格地检测编码
      * @return string
      */
-    public static function detectEncoding($str, $encoding_list = null, $strict = false)
+    public function detectEncoding($encoding_list = null, $strict = false)
     {
-        return mb_detect_encoding($str, $encoding_list, $strict);
+        return mb_detect_encoding($this->str, $encoding_list, $strict);
     }
 
     /**
@@ -166,29 +175,27 @@ class SuperString
      *
      * 参数 `$transfer_encoding` :
      *   可以是 "B"（Base64）也可以是 "Q"（Quoted-Printable）。如果未设置，将回退为 "B"。
-     * @param string $str               要编码的字符串
      * @param string $charset           指定了 str 的字符集名
      * @param string $transfer_encoding 指定了 MIME 的编码方案
      * @param string $linefeed          指定了 EOL（行尾）标记
      * @param int    $indent            首行缩进（header 里 str 前的字符数目）
      * @return string 转换后的字符串版本以 ASCII 形式表达。
      */
-    public static function encodeMimeheader($str, $charset = null, $transfer_encoding = 'B', $linefeed = "\r\n", $indent = 0)
+    public function encodeMimeheader($charset = null, $transfer_encoding = 'B', $linefeed = "\r\n", $indent = 0)
     {
-        return mb_encode_mimeheader($str, $charset, $transfer_encoding, $linefeed, $indent);
+        return mb_encode_mimeheader($this->str, $charset, $transfer_encoding, $linefeed, $indent);
     }
 
     /**
      * 将字符编码为HTML数字字符串引用
-     * @param string $str      要编码的字符串
      * @param array  $convmap  指定要转换的代码区域。
      * @param string $encoding 指定编码
      * @param bool   $is_hex   是否为16进制字符串
      * @return string
      */
-    public static function encodeNumericentity($str, array $convmap, $encoding = null, $is_hex = false)
+    public function encodeNumericentity(array $convmap, $encoding = null, $is_hex = false)
     {
-        return mb_encode_numericentity($str, $convmap, $encoding, $is_hex);
+        return mb_encode_numericentity($this->str, $convmap, $encoding, $is_hex);
     }
 
     /**
@@ -204,39 +211,36 @@ class SuperString
     /**
      * 正则表达式匹配多字节字符串
      * @param string $pattern 正则表达式
-     * @param string $string  要匹配的字符串
      * @param string $option  匹配的选项
      * @return bool
      */
-    public static function eregMatch($pattern, $string, $option = null)
+    public function eregMatch($pattern, $option = null)
     {
-        return mb_ereg_match($pattern, $string, $option);
+        return mb_ereg_match($pattern, $this->str, $option);
     }
 
     /**
      * 使用回调函数执行正则表达式搜索并使用多字节支持替换
      * @param string   $pattern  正则表达式
      * @param callable $callback 回调函数
-     * @param string   $string   要匹配的字符串
      * @param string   $option   匹配的选项
      * @return string
      */
-    public static function eregReplaceCallback($pattern, callable $callback, $string, $option = "msr")
+    public function eregReplaceCallback($pattern, callable $callback, $option = "msr")
     {
-        return mb_ereg_replace_callback($pattern, $callback, $string, $option);
+        return mb_ereg_replace_callback($pattern, $callback, $this->str, $option);
     }
 
     /**
      * 用多字节支持替换正则表达式
      * @param string $pattern     正则表达式
      * @param string $replacement 要替换成的字符串
-     * @param string $string      要匹配的字符串
      * @param string $option      匹配的选项
      * @return string
      */
-    public static function eregReplace($pattern, $replacement, $string, $option = "msr")
+    public function eregReplace($pattern, $replacement, $option = "msr")
     {
-        return mb_ereg_replace($pattern, $replacement, $string, $option);
+        return mb_ereg_replace($pattern, $replacement, $this->str, $option);
     }
 
     /**
@@ -259,14 +263,13 @@ class SuperString
 
     /**
      * 为多字节正则表达式匹配设置字符串和正则表达式
-     * @param string $string  要匹配的字符串
      * @param string $pattern 正则表达式
      * @param string $option  匹配的选项
      * @return bool
      */
-    public static function eregSearchInit($string, $pattern = null, $option = null)
+    public function eregSearchInit($pattern = null, $option = null)
     {
-        return mb_ereg_search_init($string, $pattern, $option);
+        return mb_ereg_search_init($this->str, $pattern, $option);
     }
 
     /**
@@ -315,38 +318,35 @@ class SuperString
     /**
      * 正则表达式匹配多字节支持
      * @param string $pattern 正则表达式
-     * @param string $string  要匹配的字符串
      * @param array  $regs    匹配项将存储在该数组的元素中
      * @return int
      */
-    public static function ereg($pattern, $string, array &$regs = null)
+    public function ereg($pattern, array &$regs = null)
     {
-        return mb_ereg($pattern, $string, $regs);
+        return mb_ereg($pattern, $this->str, $regs);
     }
 
     /**
      * 用多字节支持忽略大小写替换正则表达式
      * @param string $pattern 正则表达式
      * @param string $replace 要替换成的字符串
-     * @param string $string  要匹配的字符串
      * @param string $option  匹配的选项
      * @return string
      */
-    public static function eregiReplace($pattern, $replace, $string, $option = "msr")
+    public function eregiReplace($pattern, $replace, $option = "msr")
     {
-        return mb_eregi_replace($pattern, $replace, $string, $option);
+        return mb_eregi_replace($pattern, $replace, $this->str, $option);
     }
 
     /**
      * 正则表达式匹配多字节支持的忽略大小写
      * @param string $pattern 正则表达式
-     * @param string $string  要搜索的字符串
      * @param array  $regs    匹配项将存储在该数组的元素中
      * @return int
      */
-    public static function eregi($pattern, $string, array &$regs = null)
+    public function eregi($pattern, array &$regs = null)
     {
-        return mb_eregi($pattern, $string, $regs);
+        return mb_eregi($pattern, $this->str, $regs);
     }
 
     /**
@@ -480,14 +480,13 @@ class SuperString
     /**
      * 清理格式不正确的字符
      * @notice 本函数还未编写文档，仅有参数列表
-     * @param string $str      字符串
      * @param string $encoding 编码
      * @return string
      * @since  PHP7.2
      */
-    public static function scrub($str, $encoding)
+    public function scrub($encoding)
     {
-        return mb_scrub($str, $encoding);
+        return mb_scrub($this->str, $encoding);
     }
 
     /**
@@ -511,13 +510,12 @@ class SuperString
     /**
      * 使用正则表达式分割多字节字符串
      * @param string $pattern 正则表达式
-     * @param string $string  待分割的字符串
      * @param int    $limit   最多分割为 limit 个元素
      * @return array
      */
-    public static function split($pattern, $string, $limit = null)
+    public function split($pattern, $limit = null)
     {
-        return mb_split($pattern, $string, $limit);
+        return mb_split($pattern, $this->str, $limit);
     }
 
     /**
@@ -525,15 +523,14 @@ class SuperString
      *
      * 参数 `$start` :
      *   负表示返回的字符串是从 str 末尾处第 start 个字节开始的
-     * @param string $str      字符串
      * @param int    $start    开始偏移量
      * @param int    $length   长度
      * @param string $encoding 编码
      * @return string
      */
-    public static function strcut($str, $start, $length = null, $encoding = null)
+    public function strcut($start, $length = null, $encoding = null)
     {
-        return mb_strcut($str, $start, $length, $encoding);
+        return mb_strcut($this->str, $start, $length, $encoding);
     }
 
     /**
@@ -542,16 +539,15 @@ class SuperString
      * 参数 `$start` :
      *   从这些字符数开始的截取字符串。（默认是 0 个字符）。
      *   如果 start 是负数，就是字符串结尾处的字符数。
-     * @param string $str        字符串
      * @param int    $start      开始位置的偏移
      * @param int    $width      所需修剪的宽度。负数的宽度是从字符串结尾处统计的。
      * @param string $trimmarker 当字符串被截短的时候，将此字符串添加到截短后的末尾。
      * @param string $encoding   字符编码。如果省略，则使用内部字符编码
      * @return string
      */
-    public static function strimwidth($str, $start, $width, $trimmarker = null, $encoding = null)
+    public function strimwidth($start, $width, $trimmarker = null, $encoding = null)
     {
-        return mb_strimwidth($str, $start, $width, $trimmarker, $encoding);
+        return mb_strimwidth($this->str, $start, $width, $trimmarker, $encoding);
     }
 
     /**
@@ -590,13 +586,12 @@ class SuperString
 
     /**
      * 获取字符串的长度
-     * @param string $str      字符串
      * @param string $encoding 编码
      * @return int|false 如果给定的 encoding 无效则返回 FALSE
      */
-    public static function strlen($str, $encoding = null)
+    public function strlen($encoding = null)
     {
-        return mb_strlen($str, $encoding);
+        return mb_strlen($this->str, $encoding);
     }
 
     /**
@@ -702,13 +697,12 @@ class SuperString
      *
      * 参数 `$encoding` :
      *   如果省略，则使用内部字符编码。
-     * @param string $str      字符串
      * @param string $encoding 使用的字符编码名称
      * @return string
      */
-    public static function strtolower($str, $encoding = null)
+    public function strtolower($encoding = null)
     {
-        return mb_strtolower($str, $encoding);
+        return mb_strtolower($this->str, $encoding);
     }
 
     /**
@@ -716,13 +710,12 @@ class SuperString
      *
      * 参数 `$encoding` :
      *   如果省略，则使用内部字符编码。
-     * @param string $str      字符串
      * @param string $encoding 使用的字符编码名称
      * @return string
      */
-    public static function strtoupper($str, $encoding = null)
+    public function strtoupper($encoding = null)
     {
-        return mb_strtoupper($str, $encoding);
+        return mb_strtoupper($this->str, $encoding);
     }
 
     /**
@@ -730,13 +723,12 @@ class SuperString
      *
      * 参数 `$encoding` :
      *   如果省略，则使用内部字符编码。
-     * @param string $str      字符串
      * @param string $encoding 使用的字符编码名称
      * @return int
      */
-    public static function strwidth($str, $encoding = null)
+    public function strwidth($encoding = null)
     {
-        return mb_strwidth($str, $encoding);
+        return mb_strwidth($this->str, $encoding);
     }
 
     /**
@@ -769,14 +761,13 @@ class SuperString
      *
      * 参数 `$encoding` :
      *   如果省略，则使用内部字符编码。
-     * @param string $str      字符串
      * @param int    $start    开始下标
      * @param int    $length   获取长度
      * @param string $encoding 使用的字符编码
      * @return string
      */
-    public static function substr($str, $start, $length = null, $encoding = null)
+    public function substr($start, $length = null, $encoding = null)
     {
-        return mb_substr($str, $start, $length, $encoding);
+        return mb_substr($this->str, $start, $length, $encoding);
     }
 }
