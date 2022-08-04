@@ -13,7 +13,7 @@ class SuperArray extends ArrayObject
     /**
      * 将数组中的所有键名修改为全大写或小写
      * @param int  $case     0-小写；1-大写；
-     * @param bool $exchange 是否变换原数组
+     * @param bool $exchange 是否改变原数组
      * @return array
      */
     public function changeKeyCase(int $case = CASE_LOWER, bool $exchange = true): array
@@ -85,7 +85,7 @@ class SuperArray extends ArrayObject
      * @param array $array 数组
      * @return bool
      */
-    public static function isNumericArray(array $array)
+    public static function isNumericArray(array $array): bool
     {
         $index = 0;
         foreach (array_keys($array) as $key) {
